@@ -1,8 +1,8 @@
 <html>
 <title>Create Client</title>
-<body ng-app="createclient" style="text-align:center;">
+<body style="text-align:center;">
 <h1>Create Client</h1>
-<form method="POST" action="createclient" name="form1">
+<form>
 <br>
 <br>
 <table style="width:100%; margin:1em">
@@ -89,7 +89,7 @@
     <br>
     <input type="radio" name="lifecycle" ng-model="lifecycle" value="migration">Migration
     <br>
-    From<input name="from" type="date" />
+    From<input name="fromdate" type="date" />
     To<input name="todate" type="date" />
     <br>
     <input type="radio" name="lifecycle" ng-model="lifecycle" value="product enhancement/support">Product Enhancement/Support

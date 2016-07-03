@@ -27,10 +27,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 app.use('/users', users);
 
-app.get('/user', function(req, res)
-  {
-    res.sendFile('./public/user.html');
-  });
+// app.get('/user', function(req, res)
+//   {
+//     res.sendFile('./public/user.html');
+//   });
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

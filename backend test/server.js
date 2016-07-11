@@ -2,6 +2,7 @@
 
     // set up ========================
     var express  = require('express');
+        client = require('./routes/index');
     var app      = express();                               // create our app w/ express
     var mongoose = require('mongoose');                     // mongoose for mongodb
     var morgan = require('morgan');             // log requests to the console (express4)
@@ -18,6 +19,11 @@
     app.use(bodyParser.json());                                     // parse application/json
     app.use(bodyParser.json({ type: 'application/vnd.api+json' })); // parse application/vnd.api+json as json
     app.use(methodOverride());
+
+    
+
+    app.post('/index', client.addClient);
+
 
     // listen (start app with node server.js) ======================================
     app.listen(8080);

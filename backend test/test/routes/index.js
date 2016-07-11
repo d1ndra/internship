@@ -7,7 +7,23 @@ router.get('/', function(req, res, next) {
 });
 
 var mongoose = require('mongoose');
-var name = mongoose.model('Post');
+
+var server = new Server('localhost', 27017, {auto_reconnect: true});
+db = new Db('clientdb', server);
+
+db.open(function(err, db) {
+    if(!err) {
+        console.log("Connected to 'clientdb' database");
+        db.collection('index', {strict:true}, function(err, collection) {
+            if (err) {
+                console.log("The 'clients' collection doesn't exist. Creating it with sample data...");
+                populateDB();
+            }
+        });
+    }
+});
+
+var clientdb = mongoose.model('Post');
 // var active = mongoose.model('active');
 // var hostingtype=mongoose.model('hostingtype');
 // var industry=mongoose.model('industry');
@@ -24,7 +40,24 @@ var name = mongoose.model('Post');
 // var thirdparty=mongoose.model('thirdparty');
 // var icn=mongoose.model('icn');
 
-router.post('/posts', function(req, res, next) {
+router.addClient = function(req, res) {
+    var client = req.body;
+    console.log('Adding client: ' + JSON.stringify(client));
+    db.collection('clients', function(err, collection) {
+        collection.insert(client, {safe:true}, function(err, result) {
+            if (err) {
+                res.send({'error':'An error has occurred'});
+            } else {
+                console.log('Success: ' + JSON.stringify(result[0]));
+                res.send(result[0]);
+            }
+        });
+    });
+}
+
+
+
+/*router.post('/posts', function(req, res, next) {
   var name = new name(req.body);
 
   name.save(function(err, name){
@@ -43,7 +76,7 @@ router.get('/posts', function(req, res, next) {
 });
 
 
-router.get('/user', function(req, res, next) {
+*/router.get('/user', function(req, res, next) {
   res.render('user');
 });
 module.exports = router;

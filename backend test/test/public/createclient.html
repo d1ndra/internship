@@ -1,8 +1,9 @@
 <html>
 <title>Create Client</title>
-<body style="text-align:center;">
+<body style="text-align:center;" ng-app="myApp">
+<div ng-controller="myCtrl">
 <h1>Create Client</h1>
-<form>
+<form method="POST">
 <br>
 <br>
 <table style="width:100%; margin:1em">
@@ -111,11 +112,12 @@
     </tr>
 </table>
 
-<input type="submit" name="Submit" value="Create">
+<input type="submit" name="Submit" value="Create" ng-click="submit()">
 <button type="button" onclick="location.href = 'createclient.html';">Reset</button>
 <br>
 <br>
 <button type="button" onclick="location.href = 'adminstart.html';">Back</button>
 </form>
+</div>
 </body>
 </html>

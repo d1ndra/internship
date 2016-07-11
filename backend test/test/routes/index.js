@@ -8,8 +8,14 @@ router.get('/', function(req, res, next) {
 
 var mongoose = require('mongoose');
 
+/*var mongo = require('mongodb');
+
+var Server = mongo.Server,
+    Db = mongo.Db,
+    BSON = mongo.BSONPure;
+
 var server = new Server('localhost', 27017, {auto_reconnect: true});
-db = new Db('clientdb', server);
+db = new Db('winedb', server);
 
 db.open(function(err, db) {
     if(!err) {
@@ -21,7 +27,7 @@ db.open(function(err, db) {
             }
         });
     }
-});
+});*/
 
 var clientdb = mongoose.model('Post');
 // var active = mongoose.model('active');
